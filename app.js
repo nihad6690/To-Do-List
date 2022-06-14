@@ -1,37 +1,84 @@
 const input = document.querySelector('.toDo_form');
 const inputItem = document.getElementById('inputItem')
-let item = document.querySelector('.item')
+let newItem = document.querySelector('.newItem')
+let key = 0;
 
-const deleteItem = (e) =>{
+let allItems = []
+let checkId = []
+function deleteItem(e) {
     const itemToBeDeleted = e.currentTarget.parentNode
-    item.removeChild(itemToBeDeleted)
-    localStorage.removeItem(itemToBeDeleted)
-    
-}
+    removeDate(itemToBeDeleted.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim());
+    window.location.reload();
+    displayItems()
 
-const addItem = (e) =>{
+}
+const addItem = (e) => {
     e.preventDefault();
+    key = key + 1
     const itemName = inputItem.value;
-    let newItem = document.createElement('div');
-    newItem.innerHTML =   
-    `<p class="inputItem" style="display: inline;">${itemName}</p>
-    <button class = "editBtn"> 
-        <i class="fa-solid fa-pencil"></i>
-    </button>
-    <button class = "deleteBtn">
-        <i class="fa-solid fa-minus"></i>
-    </button>`;
-    saveData(newItem);
-    item.appendChild(newItem);
-    const editBtn = document.querySelector('.editBtn');
-    const deleteBtn = newItem.querySelector('.deleteBtn');
-    deleteBtn.addEventListener('click', deleteItem)
+    const item = new Object();
+    item.name = itemName
+    const copyName = itemName;
+    item.id = key;
+
+    allItems.push(item)
+    saveData()
+    displayItems()
 
 }
 
-input.addEventListener('submit', addItem)
+function displayItems() {
+
+    allItems = getData();
+    allItems.forEach(item => {
+        if (!checkId.includes(item.id)) {
+            checkId.push(item.id)
+            let nextItem = document.createElement('div');
+            nextItem.innerHTML =
+                `<p class="task" ">${item.name}</p>
+            
+                <button class = "deleteBtn">
+                <i class="fa-solid fa-minus"></i>
+                </button>
+            `;
+            newItem.appendChild(nextItem);
+            const editBtn = nextItem.querySelector('.editBtn');
+            const deleteBtn = nextItem.querySelector('.deleteBtn');
+            deleteBtn.addEventListener('click', deleteItem)
+        }
+
+    })
+}
+
 
 //----------Local Storage----------
-const saveData = (newItem) =>{
-    localStorage.setItem(newItem,newItem)
+const saveData = () => {
+    localStorage.setItem("items", JSON.stringify(allItems))
 }
+const getData = () => {
+    const task = localStorage.getItem("items")
+    return task ? JSON.parse(task) : []
+}
+const removeDate = (itemName) => {
+    allItems = getData();
+    allItems = allItems.filter(function (item) {
+        console.log(item.name.length)
+        console.log(item.name)
+        console.log(itemName.length)
+        console.log(itemName)
+        if (item.name !== itemName) {
+            return item
+        }
+    })
+    localStorage.setItem("items", JSON.stringify(allItems))
+}
+
+window.addEventListener('load', () => {
+
+    allItems = getData
+    displayItems()
+
+
+})
+
+input.addEventListener('submit', addItem)

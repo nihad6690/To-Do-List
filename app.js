@@ -82,3 +82,36 @@ window.addEventListener('load', () => {
 })
 
 input.addEventListener('submit', addItem)
+
+/*//----------Local Storage----------
+const saveData = () => {
+    localStorage.setItem("items", JSON.stringify(allItems))
+}
+const getData = () => {
+    const task = localStorage.getItem("items")
+    return task ? JSON.parse(task) : []
+}
+const removeDate = (itemName) => {
+    allItems = getData();
+    allItems = allItems.filter(function (item) {
+        console.log(item.name.length)
+        console.log(item.name)
+        console.log(itemName.length)
+        console.log(itemName)
+        if (item.name !== itemName) {
+            return item
+        }
+    })
+    localStorage.setItem("items", JSON.stringify(allItems))
+}
+
+window.addEventListener('load', () => {
+
+    allItems = getData
+    displayItems()
+
+
+})
+
+input.addEventListener('submit', addItem)
+*/

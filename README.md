@@ -3,4 +3,5 @@ I created this program to practice the basics of html, css, and javascript. All 
 
 **Set up**: Download this zip file and open it in a file editor and download the live server extension. Then go to index.html and run from live server.
 
+**Pictures**
 ![image](https://user-images.githubusercontent.com/86733538/173469346-30260eb2-e652-4982-a67c-596f1800a2de.png)

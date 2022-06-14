@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap');
+html,body{
+    background-color: #222222;
+    font-family: 'Inconsolata', monospace;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+#inputItem{
+	padding: 0 30px;
+	font-size: 18px;
+	width: 60%;
+	max-width: 400px;
+	height: 80px;
+	border: 1px solid darken(white, 30%);
+	border-radius: 20px 0 0 20px;
+    background-color: #fff;
+}
+.Title{
+    font-size: 50px;
+    
+    color: #fff;
+}
+.add{
+    display: inline-block;
+    cursor: pointer;
+	border: none;
+	background-size: 35px 35px;
+	border-radius: 0 20px 20px 0;
+	padding: 15px 25px;
+	width: 150px;
+	height: 80px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+.add:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fbc91b;
+    z-index: -2;
+  }
+.add:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #c69b03;
+    transition: all 0.3s;
+    z-index: -1;
+  }
+.add:hover {
+    color: #fff;
+  }
+.add:hover:before {
+    width: 100%;
+  }
+
+.task{
+    padding: 0 30px;
+	font-size: 18px;
+	width: 60%;
+	max-width: 400px;
+	height: 20px;
+    margin-right: 120px;
+	border: 1px solid darken(white, 30%);
+	border-radius: 20px 0 0 20px;
+    background-color: #fff;
+    display: inline-block;
+    color: black;
+    font-weight: bolder;
+
+}
